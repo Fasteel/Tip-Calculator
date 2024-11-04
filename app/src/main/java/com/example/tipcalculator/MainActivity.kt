@@ -98,6 +98,7 @@ fun TipTimeLayout() {
             amount = amount,
             onValueChange = { amount = it },
             leadingIcon = R.drawable.money,
+            iconDescription = R.string.input_icon_bill_description,
             modifier = Modifier
                 .padding(bottom = 32.dp)
                 .fillMaxWidth()
@@ -107,6 +108,7 @@ fun TipTimeLayout() {
             amount = tipPercent,
             onValueChange = { tipPercent = it },
             leadingIcon = R.drawable.percent,
+            iconDescription = R.string.input_icon_percent_description,
             modifier = Modifier
                 .padding(bottom = 32.dp)
                 .fillMaxWidth()
@@ -118,7 +120,7 @@ fun TipTimeLayout() {
                 .fillMaxWidth()
                 .padding(0.dp, 0.dp, 0.dp, 24.dp)
         ) {
-            Text("Round up tip?")
+            Text(stringResource(R.string.tip_question))
             Switch(
                 checked = shouldRoundTip,
                 onCheckedChange = {
@@ -137,6 +139,7 @@ fun TipTimeLayout() {
 @Composable
 fun EditNumberField(
     @StringRes label: Int,
+    @StringRes iconDescription: Int,
     @DrawableRes leadingIcon: Int,
     modifier: Modifier = Modifier,
     amount: String,
@@ -146,7 +149,7 @@ fun EditNumberField(
         leadingIcon = {
             Icon(
                 painter = painterResource(leadingIcon),
-                contentDescription = "TODO"
+                contentDescription = stringResource(iconDescription)
             )
         },
         value = amount,

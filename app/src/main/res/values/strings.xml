@@ -4,4 +4,7 @@
     <string name="bill_amount">Bill Amount</string>
     <string name="tip_amount">Tip Amount: %s</string>
     <string name="tip_label">Tip %</string>
+    <string name="tip_question">Round up tip?</string>
+    <string name="input_icon_percent_description">Percent icon</string>
+    <string name="input_icon_bill_description">Money icon</string>
 </resources>
