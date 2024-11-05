@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -40,6 +41,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tipcalculator.ui.theme.TipCalculatorTheme
+import com.example.tiptime.R
 import java.text.NumberFormat
 import kotlin.math.ceil
 
@@ -57,7 +59,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-fun calculateTip(amount: Double, tipPercent: Double = 15.0, shouldRoundTip: Boolean): String {
+@VisibleForTesting
+internal fun calculateTip(
+    amount: Double,
+    shouldRoundTip: Boolean,
+    tipPercent: Double = 15.0
+): String {
     val tip = tipPercent / 100 * amount
     return NumberFormat.getCurrencyInstance().format(
         if (shouldRoundTip) ceil(tip).toInt()
@@ -73,7 +80,7 @@ fun TipTimeLayout() {
 
     val doubleAmount = amount.toDoubleOrNull() ?: 0.0
     val doubleTipPercent = tipPercent.toDoubleOrNull() ?: 0.0
-    val tip = calculateTip(doubleAmount, doubleTipPercent, shouldRoundTip)
+    val tip = calculateTip(doubleAmount, shouldRoundTip, doubleTipPercent)
 
     Column(
         modifier = Modifier
